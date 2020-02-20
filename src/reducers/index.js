@@ -1,3 +1,5 @@
+import { REMOVE } from "../actions/";
+
 export const initialState = {
   additionalPrice: 0,
   car: {
@@ -17,6 +19,29 @@ export const initialState = {
 
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case "ADD":
+      return {
+        ...state,
+        car: {
+          ...state.car,
+          features: state.car.features.includes(action.payload)
+            ? [...state.car.features]
+            : [...state.car.features, action.payload],
+          price: state.car.price + action.payload.price
+        }
+      };
+    case REMOVE:
+      console.log(`in the remove`);
+      return {
+        ...state,
+        car: {
+          ...state.car,
+          features: state.car.features.filter((feat) => {
+            return feat.id !== action.payload.id;
+          }),
+          price: state.car.price - action.payload.price
+        }
+      };
     default:
       return state;
   }

@@ -12,22 +12,17 @@ import { addItem, removeItem } from "./actions/index";
 const App = (props) => {
   console.log(props);
 
-  const removeFeature = (item) => {
-    // dispatch an action here to remove an item
-  };
-
-  const buyItem = (item) => {
-    // dipsatch an action here to add an item
-  };
-
   return (
     <div className="boxes">
       <div className="box">
         <Header car={props.car} />
-        <AddedFeatures car={props.car} />
+        <AddedFeatures car={props.car} removeItem={props.removeItem} />
       </div>
       <div className="box">
-        <AdditionalFeatures additionalFeatures={props.additionalFeatures} />
+        <AdditionalFeatures
+          additionalFeatures={props.additionalFeatures}
+          addItem={props.addItem}
+        />
         <Total car={props.car} additionalPrice={props.additionalPrice} />
       </div>
     </div>
